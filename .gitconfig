@@ -1,0 +1,20 @@
+[user]
+  name = Dave Kroondyk
+  email = davekaro@gmail.com
+[alias]
+  ci = commit
+  st = status
+  co = checkout
+  aa = add --all
+  di = diff
+  dc = diff --cached
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[color]
+  status = auto
+  diff   = auto
+  branch = auto
+[merge]
+  tool = p4merge
+[mergetool]
+  keepBackup = false
+
