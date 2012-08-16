@@ -17,4 +17,6 @@
   tool = p4merge
 [mergetool]
   keepBackup = false
+[branch]
+  autosetuprebase = always
 
