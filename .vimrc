@@ -51,6 +51,8 @@ filetype plugin indent on
 set wildmode=longest,list
 " make tab completion for files/buffers act like bash
 set wildmenu
+" ignore uploads/attachments folder in Rails apps - mostly for Command-T
+set wildignore+=public/system/**
 let mapleader=","
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
