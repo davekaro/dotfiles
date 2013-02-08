@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="davekaro"
+ZSH_THEME="robbyrussell"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -21,6 +21,7 @@ ZSH_THEME="davekaro"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment following line if you want to disable autosetting terminal title.
+
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
@@ -32,31 +33,9 @@ ZSH_THEME="davekaro"
 # plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-
 # Customize to your needs...
-export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
-
-export PATH=$HOME/apps/Sublime\ Text\ 2:$PATH
-export PATH="$HOME/apps/p4v/bin:$PATH"
-export PATH="$HOME/.rbenv/bin:$PATH"
-export LD_LIBRARY_PATH=/opt/oracle/instantclient_11_1
-export PATH="$PATH:$LD_LIBRARY_PATH"
-export NLS_LANG=AMERICAN_AMERICA.UTF8
-# Use bundle install --binstubs, so in a rails project the bin/ directory will be in my PATH
-export PATH="./bin:$PATH"
-
-export EDITOR=sublime_text
-
-eval "$(rbenv init -)"
-
-alias st='sublime_text -n . &'
-
-# Turn off spell correction
 unsetopt correct_all
 
-# Setup colors
-eval `dircolors /home/dave/.dircolors/dircolors.ansi-dark`
-# for 256 colors, use below
-# eval `dircolors /home/dave/.dircolors/dircolors.256dark`
-# export TERM=xterm-256color
+# Use bundle install --binstubs, so in a rails project the bin/ directory will be in my PATH
+export PATH="./bin:$PATH"
 
