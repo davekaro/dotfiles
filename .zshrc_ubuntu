@@ -60,3 +60,8 @@ eval `dircolors /home/dave/.dircolors/dircolors.ansi-dark`
 # eval `dircolors /home/dave/.dircolors/dircolors.256dark`
 # export TERM=xterm-256color
 
+# Ruby GC Tuning
+export RUBY_HEAP_MIN_SLOTS=600000
+export RUBY_GC_MALLOC_LIMIT=59000000
+export RUBY_HEAP_FREE_MIN=100000
+
