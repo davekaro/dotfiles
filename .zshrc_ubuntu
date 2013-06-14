@@ -43,7 +43,7 @@ export LD_LIBRARY_PATH=/opt/oracle/instantclient_11_1
 export PATH="$PATH:$LD_LIBRARY_PATH"
 export NLS_LANG=AMERICAN_AMERICA.UTF8
 
-export EDITOR=sublime_text
+export EDITOR=vim
 
 eval "$(rbenv init -)"
 # Use bundle install --binstubs, so in a rails project the bin/ directory will be in my PATH
