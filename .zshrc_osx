@@ -44,14 +44,14 @@ DISABLE_CORRECTION="true"
 
 source $ZSH/oh-my-zsh.sh
 
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh
-
 # Customize to your needs...
-export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 #export PATH="$HOME/apps/p4v/bin:$PATH"
 # Use bundle install --binstubs, so in a rails project the bin/ directory will be in my PATH
 export PATH="./bin:$PATH"
+
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
 
 export EDITOR=vim
 
