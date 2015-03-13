@@ -104,10 +104,8 @@ endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Run a given vim command on the results of fuzzy selecting from a given shell
 " command. See usage below.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! SelectaCommand(choice_command, selecta_args, vim_command)
   try
     let selection = system(a:choice_command . " | selecta " . a:selecta_args)
@@ -123,7 +121,30 @@ endfunction
 
 " Find all files in all non-dot directories starting in the working directory.
 " Fuzzy select one of those. Open the selected file with :e.
-nnoremap <leader>f :call SelectaCommand("find * -type f -not -path 'tmp*' -not -path 'node_modules*'", "", ":e")<cr>
+nnoremap <leader>f :call SelectaCommand("find * -type f -not -path 'tmp*' -not -path 'node_modules*' -not -path 'bower_components*'", "", ":e")<cr>
+
+" Open a buffer
+function! SelectaBuffer()
+  let bufnrs = filter(range(1, bufnr("$")), 'buflisted(v:val)')
+  let buffers = map(bufnrs, 'bufname(v:val)')
+  call SelectaCommand('echo "' . join(buffers, "\n") . '"', "", ":b")
+endfunction
+
+" Fuzzy select a buffer. Open the selected buffer with :b.
+nnoremap <leader>b :call SelectaBuffer()<cr>
+
+" Search for files based on identifier under the cursor
+" When you put your cursor anywhere in the word "User" and press <c-g>, this
+" mapping will open Selecta with the search box pre-populated with "User".
+" It's a quick and dirty way to find files related to an identifier.
+function! SelectaIdentifier()
+  " Yank the word under the cursor into the z register
+  normal "zyiw
+  " Fuzzy match files in the current directory, starting with the word under
+  " the cursor
+  call SelectaCommand("find * -type f -not -path 'tmp*' -not -path 'node_modules*' -not -path 'bower_components*'", "-s " . @z, ":e")
+endfunction
+nnoremap <c-g> :call SelectaIdentifier()<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MAPS TO JUMP TO SPECIFIC COMMAND-T TARGETS AND FILES
