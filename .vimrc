@@ -121,7 +121,7 @@ endfunction
 
 " Find all files in all non-dot directories starting in the working directory.
 " Fuzzy select one of those. Open the selected file with :e.
-nnoremap <leader>f :call SelectaCommand("find * -type f -not -path 'tmp*' -not -path 'node_modules*' -not -path 'bower_components*'", "", ":e")<cr>
+nnoremap <leader>f :call SelectaCommand("find * -type f -not -path 'tmp*' -not -path 'node_modules*'", "", ":e")<cr>
 
 " Open a buffer
 function! SelectaBuffer()
@@ -142,7 +142,7 @@ function! SelectaIdentifier()
   normal "zyiw
   " Fuzzy match files in the current directory, starting with the word under
   " the cursor
-  call SelectaCommand("find * -type f -not -path 'tmp*' -not -path 'node_modules*' -not -path 'bower_components*'", "-s " . @z, ":e")
+  call SelectaCommand("find * -type f -not -path 'tmp*' -not -path 'node_modules*'", "-s " . @z, ":e")
 endfunction
 nnoremap <c-g> :call SelectaIdentifier()<cr>
 
