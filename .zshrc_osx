@@ -24,3 +24,5 @@ export RUBY_HEAP_FREE_MIN=100000
 # https://getvau.lt/ https://github.com/jcoglan/vault tab completion
 which vault > /dev/null && . "$( vault --initpath )"
 
+alias nombom='npm cache clear && bower cache clean && rm -rf node_modules bower_components && npm install && bower install'
+

@@ -55,6 +55,9 @@ set wildmenu
 set wildignore+=public/system/**
 let mapleader=","
 
+" Better copy paste
+set clipboard+=unnamed
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLOR
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -121,7 +124,7 @@ endfunction
 
 " Find all files in all non-dot directories starting in the working directory.
 " Fuzzy select one of those. Open the selected file with :e.
-nnoremap <leader>f :call SelectaCommand("find * -type f -not -path 'tmp*' -not -path 'node_modules*'", "", ":e")<cr>
+nnoremap <leader>f :call SelectaCommand("git ls-files --cached --exclude-standard --others", "", ":e")<cr>
 
 " Open a buffer
 function! SelectaBuffer()
