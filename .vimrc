@@ -27,6 +27,7 @@ set numberwidth=5
 set number
 set showtabline=2
 set winwidth=79
+set relativenumber
 " Prevent Vim from clobbering the scrollback buffer. See
 " http://www.shallowsky.com/linux/noaltscreen.html
 set t_ti= t_te=
