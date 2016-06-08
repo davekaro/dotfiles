@@ -25,8 +25,15 @@ export RUBY_HEAP_FREE_MIN=100000
 export OCI_DIR="/opt/oracle/instantclient_11_2"
 export ORACLE_HOME="/opt/oracle/instantclient_11_2"
 
-# https://getvau.lt/ https://github.com/jcoglan/vault tab completion
-which vault > /dev/null && . "$( vault --initpath )"
-
 alias nombom='npm cache clear && bower cache clean && rm -rf node_modules bower_components dist tmp && npm install && bower install'
 
+# Add gpg agent to save password for git commits
+# kill -0 checks to see if the pid exists
+if test -f $HOME/.gpg-agent-info && kill -0 `cut -d: -f 2 $HOME/.gpg-agent-info` 2>/dev/null; then
+  GPG_AGENT_INFO=`cat $HOME/.gpg-agent-info | cut -c 16-`
+else
+  # No, gpg-agent not available; start gpg-agent
+  eval `gpg-agent --daemon --no-grab --write-env-file $HOME/.gpg-agent-info`
+fi
+export GPG_TTY=`tty`
+export GPG_AGENT_INFO
