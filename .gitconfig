@@ -1,7 +1,7 @@
 [user]
   name = Dave Kroondyk
   email = davekaro@gmail.com
-  signingkey = AD559386
+  #signingkey = AD559386
 [alias]
   ci = commit
   st = status
@@ -31,5 +31,5 @@
   clean = git-lfs clean %f
   smudge = git-lfs smudge %f
   required = true
-[commit]
-  gpgsign = true
+#[commit]
+  #gpgsign = true
