@@ -10,6 +10,7 @@
   di = diff
   dc = diff --cached
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  delete-merged-branches = !git branch --merged master     | grep -v -e 'master' -e '\\*' | xargs -n 1 git branch -d && git remote prune origin
 [color]
   status = auto
   diff   = auto
@@ -33,3 +34,5 @@
   required = true
 #[commit]
   #gpgsign = true
+[core]
+  editor = vim
