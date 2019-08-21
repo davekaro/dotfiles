@@ -1,7 +1,7 @@
 [user]
-  name = Dave Kroondyk
-  email = davekaro@gmail.com
-  #signingkey = AD559386
+	name = Dave Kroondyk
+	email = davekaro@gmail.com
+  #signingkey = 077648A17E95BC1A
 [alias]
   ci = commit
   st = status
@@ -11,6 +11,7 @@
   dc = diff --cached
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   delete-merged-branches = !git branch --merged master     | grep -v -e 'master' -e '\\*' | xargs -n 1 git branch -d && git remote prune origin
+  delete-squashed-branches = !comm -12 <$(git branch | sed 's/ *//g') <$(git remote prune origin | sed 's/^.*origin\\///g') | xargs -L1 -J % git branch -D %
 [color]
   status = auto
   diff   = auto
@@ -29,10 +30,11 @@
   clean = git media clean %f
   smudge = git media smudge %f
 [filter "lfs"]
-  clean = git-lfs clean %f
-  smudge = git-lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
   required = true
-#[commit]
+	process = git-lfs filter-process
+[commit]
   #gpgsign = true
 [core]
   editor = vim

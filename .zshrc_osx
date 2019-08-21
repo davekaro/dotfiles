@@ -3,8 +3,8 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
+eval "$(nodenv init -)"
+eval "$(rbenv init -)"
 
 # Customize to your needs...
 #export PATH="$HOME/apps/p4v/bin:$PATH"
@@ -15,18 +15,6 @@ export PATH="$HOME/bin:$PATH"
 export GOPATH="/usr/local/bin"
 
 export EDITOR=vim
-
-# Ruby GC Tuning
-export RUBY_GC_HEAP_INIT_SLOTS=600000
-export RUBY_GC_MALLOC_LIMIT=59000000
-export RUBY_HEAP_FREE_MIN=100000
-
-# Oracle stuff
-export OCI_DIR="/opt/oracle/instantclient_11_2"
-export ORACLE_HOME="/opt/oracle/instantclient_11_2"
-
-alias nombom='npm cache clear && bower cache clean && rm -rf node_modules bower_components dist tmp && npm install && bower install'
-alias nom='npm cache clear && rm -rf node_modules && npm install'
 
 # Add gpg agent to save password for git commits
 # kill -0 checks to see if the pid exists
@@ -39,14 +27,4 @@ alias nom='npm cache clear && rm -rf node_modules && npm install'
 #export GPG_TTY=`tty`
 #export GPG_AGENT_INFO
 
-# The next line updates PATH for the Google Cloud SDK.
-# source $HOME/Documents/projects/google-cloud-sdk/path.zsh.inc
-
-# The next line enables shell command completion for gcloud.
-# source $HOME/Documents/projects/google-cloud-sdk/completion.zsh.inc
-
-export NVM_DIR="$HOME/.nvm"
-. "$(brew --prefix nvm)/nvm.sh"
-
-export LDFLAGS="-L/usr/local/opt/openssl/lib"
-export CPPFLAGS="-I/usr/local/opt/openssl/include"
+alias be='bundle exec'
