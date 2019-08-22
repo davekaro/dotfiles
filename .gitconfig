@@ -1,6 +1,6 @@
 [user]
-	name = Dave Kroondyk
-	email = davekaro@gmail.com
+  name = Dave Kroondyk
+  email = davekaro@gmail.com
   #signingkey = 077648A17E95BC1A
 [alias]
   ci = commit
@@ -22,7 +22,7 @@
   keepBackup = false
 [branch]
   autosetuprebase = always
-
+  sort = -committerdate
 [push]
   default = simple
 [filter "media"]
@@ -30,10 +30,10 @@
   clean = git media clean %f
   smudge = git media smudge %f
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
   required = true
-	process = git-lfs filter-process
+  process = git-lfs filter-process
 [commit]
   #gpgsign = true
 [core]
