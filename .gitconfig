@@ -38,3 +38,5 @@
   #gpgsign = true
 [core]
   editor = vim
+[includeIf "gitdir:~/Documents/projects/work/"]
+  path = ~/Documents/projects/work/.gitconfig
