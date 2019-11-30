@@ -28,3 +28,6 @@ export EDITOR=vim
 #export GPG_AGENT_INFO
 
 alias be='bundle exec'
+
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
