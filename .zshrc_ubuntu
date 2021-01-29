@@ -12,7 +12,15 @@ eval "$(rbenv init -)"
 # https://twitter.com/tpope/status/165631968996900865
 export PATH=".git/safe/../../bin:$PATH"
 export PATH="$HOME/bin:$PATH"
+# Remove WSL2 windows directories
+export PATH=$(echo $PATH | tr ':' '\n' | grep -v "/mnt/c/Windows" | tr '\n' ':')
 
 export EDITOR=vim
 
 alias be='bundle exec'
+export PATH=/home/dave/.pyenv/versions/3.7.2/bin:$PATH
+
+# set DISPLAY variable to the IP automatically assigned to WSL2
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | cut -d ' ' -f 2):0.0
+sudo /etc/init.d/dbus start &> /dev/null
+
