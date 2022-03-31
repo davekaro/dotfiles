@@ -1,4 +1,19 @@
-call pathogen#infect()
+" https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin()
+
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-fugitive'
+
+" Initialize plugin system
+call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BASIC EDITING CONFIGURATION
@@ -92,6 +107,8 @@ call MapCR()
 nnoremap <leader><leader> <c-^>
 " Strip trailing whitespace
 nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
+" fzf
+nnoremap <leader>f :GFiles --cached --exclude-standard --others<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MULTIPURPOSE TAB KEY
@@ -107,48 +124,6 @@ function! InsertTabWrapper()
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
-
-" Run a given vim command on the results of fuzzy selecting from a given shell
-" command. See usage below.
-function! SelectaCommand(choice_command, selecta_args, vim_command)
-  try
-    let selection = system(a:choice_command . " | selecta " . a:selecta_args)
-  catch /Vim:Interrupt/
-    " Swallow the ^C so that the redraw below happens; otherwise there will be
-    " leftovers from selecta on the screen
-    redraw!
-    return
-  endtry
-  redraw!
-  exec a:vim_command . " " . selection
-endfunction
-
-" Find all files in all non-dot directories starting in the working directory.
-" Fuzzy select one of those. Open the selected file with :e.
-nnoremap <leader>f :call SelectaCommand("git ls-files --cached --exclude-standard --others", "", ":e")<cr>
-
-" Open a buffer
-function! SelectaBuffer()
-  let bufnrs = filter(range(1, bufnr("$")), 'buflisted(v:val)')
-  let buffers = map(bufnrs, 'bufname(v:val)')
-  call SelectaCommand('echo "' . join(buffers, "\n") . '"', "", ":b")
-endfunction
-
-" Fuzzy select a buffer. Open the selected buffer with :b.
-nnoremap <leader>b :call SelectaBuffer()<cr>
-
-" Search for files based on identifier under the cursor
-" When you put your cursor anywhere in the word "User" and press <c-g>, this
-" mapping will open Selecta with the search box pre-populated with "User".
-" It's a quick and dirty way to find files related to an identifier.
-function! SelectaIdentifier()
-  " Yank the word under the cursor into the z register
-  normal "zyiw
-  " Fuzzy match files in the current directory, starting with the word under
-  " the cursor
-  call SelectaCommand("find * -type f -not -path 'tmp*' -not -path 'node_modules*'", "-s " . @z, ":e")
-endfunction
-nnoremap <c-g> :call SelectaIdentifier()<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MAPS TO JUMP TO SPECIFIC COMMAND-T TARGETS AND FILES
