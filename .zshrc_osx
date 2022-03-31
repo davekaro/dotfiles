@@ -1,6 +1,9 @@
 # https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
+  autoload -Uz compinit
+  compinit
 fi
 
 #
@@ -13,8 +16,8 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-#eval "$(nodenv init -)"
-#eval "$(rbenv init -)"
+eval "$(nodenv init -)"
+eval "$(rbenv init - zsh)"
 
 # Customize to your needs...
 #export PATH="$HOME/apps/p4v/bin:$PATH"
@@ -39,5 +42,5 @@ export EDITOR=vim
 
 alias be='bundle exec'
 
-. /usr/local/opt/asdf/asdf.sh
+# . /usr/local/opt/asdf/asdf.sh
 
