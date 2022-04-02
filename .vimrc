@@ -11,6 +11,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-fugitive'
+Plug 'lifepillar/vim-solarized8'
 
 " Initialize plugin system
 call plug#end()
@@ -77,9 +78,11 @@ set clipboard+=unnamed
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLOR
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set t_Co=16
+set termguicolors
 set background=dark
-colorscheme solarized
+let g:solarized_extra_hi_groups=1
+let g:solarized_italics=0
+autocmd vimenter * ++nested colorscheme solarized8
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " STATUS LINE
