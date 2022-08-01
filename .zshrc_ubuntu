@@ -5,8 +5,10 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
+export PATH="$HOME/.nodenv/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(nodenv init -)"
 eval "$(rbenv init - zsh)"
 
@@ -22,19 +24,11 @@ export EDITOR=vim
 alias br='bin/rails'
 alias be='bundle exec'
 alias dc='docker-compose'
-export PATH=/home/dave/.pyenv/versions/3.7.2/bin:$PATH
-export PATH=/home/dave/.fly/bin:$PATH
-
-# set DISPLAY variable to the IP automatically assigned to WSL2
-# export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | cut -d ' ' -f 2):0.0
-# sudo /etc/init.d/dbus start &> /dev/null
 
 # In windows terminal, open new tabs in same directory
 # https://github.com/microsoft/terminal/issues/3158
 # only works if I use it on command line
 # eval "$(printf "\e]9;9;%s\e\\" $(wslpath -m $PWD))"
-
-alias python='python3'
 
 /usr/bin/keychain -q --nogui $HOME/.ssh/id_rsa
 source $HOME/.keychain/$HOST-sh
