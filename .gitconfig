@@ -40,3 +40,7 @@
   editor = vim
 [includeIf "gitdir:~/projects/"]
   path = ~/projects/.gitconfig
+[fetch]
+  prune = true
+[pull]
+  rebase = true
