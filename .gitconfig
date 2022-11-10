@@ -25,6 +25,7 @@
   sort = -committerdate
 [push]
   default = simple
+  autoSetupRemote = true
 [filter "media"]
   required = true
   clean = git media clean %f
@@ -44,3 +45,5 @@
   prune = true
 [pull]
   rebase = true
+[remote]
+  pushdefault = origin
