@@ -6,6 +6,8 @@ if type brew &>/dev/null; then
   compinit
 fi
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 #
 # Workaround for: https://github.com/sorin-ionescu/prezto/issues/1744
 #
@@ -41,6 +43,7 @@ export EDITOR=vim
 #export GPG_AGENT_INFO
 
 alias be='bundle exec'
+alias dc='docker-compose'
 
 # . /usr/local/opt/asdf/asdf.sh
 
