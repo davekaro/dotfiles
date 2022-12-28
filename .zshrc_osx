@@ -44,6 +44,7 @@ export EDITOR=vim
 
 alias be='bundle exec'
 alias dc='docker-compose'
+alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 
 # . /usr/local/opt/asdf/asdf.sh
 
