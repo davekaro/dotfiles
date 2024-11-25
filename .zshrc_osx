@@ -8,43 +8,18 @@ fi
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-#
-# Workaround for: https://github.com/sorin-ionescu/prezto/issues/1744
-#
-export HISTFILE="${ZDOTDIR:-$HOME}/.zhistory" # The path to the history file.
-
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-eval "$(nodenv init -)"
-eval "$(rbenv init - zsh)"
-
 # Customize to your needs...
-#export PATH="$HOME/apps/p4v/bin:$PATH"
-# Use bundle install --binstubs, so in a rails project the bin/ directory will be in my PATH
-# https://twitter.com/tpope/status/165631968996900865
-export PATH=".git/safe/../../bin:$PATH"
+
 export PATH="$HOME/bin:$PATH"
-export GOPATH="/usr/local/bin"
-
 export EDITOR=vim
-
-# Add gpg agent to save password for git commits
-# kill -0 checks to see if the pid exists
-#if test -f $HOME/.gpg-agent-info && kill -0 `cut -d: -f 2 $HOME/.gpg-agent-info` 2>/dev/null; then
-#  GPG_AGENT_INFO=`cat $HOME/.gpg-agent-info | cut -c 16-`
-#else
-  # No, gpg-agent not available; start gpg-agent
-#  eval `gpg-agent --daemon --no-grab --write-env-file $HOME/.gpg-agent-info`
-#fi
-#export GPG_TTY=`tty`
-#export GPG_AGENT_INFO
 
 alias be='bundle exec'
 alias dc='docker-compose'
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 
-# . /usr/local/opt/asdf/asdf.sh
-
+eval "$(/Users/dave/.local/bin/mise activate zsh)"

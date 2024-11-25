@@ -1,7 +1,7 @@
 [user]
   name = Dave Kroondyk
-  email = davekaro@hey.com
-  #signingkey = 077648A17E95BC1A
+  email = dave@vanillabean.dev
+  signingKey = ~/.ssh/id_ed25519.pub
 [alias]
   ci = commit
   st = status
@@ -18,10 +18,11 @@
   branch = auto
 [merge]
   tool = p4merge
+  conflictStyle = zdiff3
 [mergetool]
   keepBackup = false
 [branch]
-  autosetuprebase = always
+  autoSetupRebase = always
   sort = -committerdate
 [push]
   default = simple
@@ -35,8 +36,12 @@
   smudge = git-lfs smudge -- %f
   required = true
   process = git-lfs filter-process
+[gpg]
+  format = ssh
+[gpg "ssh"]
+  allowedSignersFile = ~/.ssh/allowed_signers
 [commit]
-  #gpgsign = true
+  gpgSign = true
 [core]
   editor = vim
 [includeIf "gitdir:~/projects/"]
@@ -46,6 +51,7 @@
 [pull]
   rebase = true
 [remote]
-  pushdefault = origin
+  pushDefault = origin
 [init]
   defaultBranch = main
+
