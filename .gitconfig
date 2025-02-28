@@ -10,23 +10,12 @@
   di = diff
   dc = diff --cached
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-  delete-merged-branches = !git branch --merged master     | grep -v -e 'master' -e '\\*' | xargs -n 1 git branch -d && git remote prune origin
+  delete-merged-branches = !git branch --merged main | grep -v -e 'main' -e '\\*' | xargs -n 1 git branch -d && git remote prune origin
   delete-squashed-branches = !comm -12 <$(git branch | sed 's/ *//g') <$(git remote prune origin | sed 's/^.*origin\\///g') | xargs -L1 -J % git branch -D %
 [color]
   status = auto
   diff   = auto
   branch = auto
-[merge]
-  tool = p4merge
-  conflictStyle = zdiff3
-[mergetool]
-  keepBackup = false
-[branch]
-  autoSetupRebase = always
-  sort = -committerdate
-[push]
-  default = simple
-  autoSetupRemote = true
 [filter "media"]
   required = true
   clean = git media clean %f
@@ -46,12 +35,56 @@
   editor = vim
 [includeIf "gitdir:~/projects/"]
   path = ~/projects/.gitconfig
-[fetch]
-  prune = true
-[pull]
-  rebase = true
-[remote]
-  pushDefault = origin
+
+# Everything below from https://blog.gitbutler.com/how-git-core-devs-configure-git/
+
+# clearly makes git better
+
+[column]
+  ui = auto
+[branch]
+  sort = -committerdate
+[tag]
+  sort = version:refname
 [init]
   defaultBranch = main
+[diff]
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
+[push]
+  default = simple
+  autoSetupRemote = true
+  followTags = true
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
 
+# why the hell not?
+
+[help]
+  autocorrect = prompt
+[commit]
+  verbose = true
+[rerere]
+  enabled = true
+  autoupdate = true
+[core]
+  excludesfile = ~/.gitignore
+[rebase]
+  autoSquash = true
+  autoStash = true
+  updateRefs = true
+
+# a matter of taste (uncomment if you dare)
+
+[core]
+  # fsmonitor = true
+  # untrackedCache = true
+[merge]
+  # (just 'diff3' if git version < 2.3)
+  conflictstyle = zdiff3
+[pull]
+  rebase = true
